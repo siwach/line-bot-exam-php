@@ -7,7 +7,7 @@
 	$replyToken = $deCode['events'][0]['replyToken'];
 	$messages = [];
 	$messages['replyToken'] = $replyToken;
-	$messages['messages'][0] = getFormatTextMessage("เอ้ย ถามอะไรก็ตอบได้");
+	$messages['messages'][0] = getFormatTextMessage("ฉันยังไม่เข้าใจคำถามของคุณดีนัก แต่คุณสามารถไปทำ assessment ของคุณได้ที่ https://bpi.co.th/gcme");
 	$encodeJson = json_encode($messages);
 	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
   	$LINEDatas['token'] = "o9NZ7KFnqWig2wU0rodJtgQH5I93Wq6W/02r/JyUeptCCJ0mOzH1FONFMFpzK41mUErzxIda5u0LUEAA5vixaRC/XB5owB0HxWoyYeoaPz5yF0FFX4PCHWeL3Nn6TWOSs9NKkReGj6njWyR12R/5jQdB04t89/1O/w1cDnyilFU=";
