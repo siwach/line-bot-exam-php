@@ -107,7 +107,9 @@
 			  $xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10");
  			  $xmessage["messages"][0] = array("type"=>"text", "text"=>$xmsgText);//"Test message to siwach\nTest new line");
 			  $encodeMessage = json_encode($xmessage);
-			 
+
+			  file_put_contents('log.txt', $xmsgText . PHP_EOL, FILE_APPEND);
+
 			  pushMessage($datas, $encodeMessage);
 
 		  }else{
