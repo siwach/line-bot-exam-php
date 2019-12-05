@@ -95,6 +95,9 @@
 	   $response = curl_exec($curl);
 	   $err = curl_error($curl);
 	   curl_close($curl);
+
+	   file_put_contents('log.txt', "completed get profile" . PHP_EOL, FILE_APPEND);
+
 	   if($err){
 		  $datasReturn['result'] = 'E';
 		  $datasReturn['message'] = $err;
