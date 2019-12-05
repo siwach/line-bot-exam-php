@@ -102,22 +102,23 @@
 		  $datasReturn['result'] = 'E';
 		  $datasReturn['message'] = $err;
 	   }else{
-		  if($response == "{}"){
+		  //if($response == "{}"){
 			  $datasReturn['result'] = 'S';
 			  $datasReturn['message'] = 'Success';
-			  $xmsgText = json_encode($response);
+			  $returnDecode = json_decode($response,true);
+			  //$xmsgText = json_encode($response);
 			  $xmessage = [];
 			  $xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10");
- 			  $xmessage["messages"][0] = array("type"=>"text", "text"=>$xmsgText);//"Test message to siwach\nTest new line");
+ 			  $xmessage["messages"][0] = array("type"=>"text", "text"=>$response);//"Test message to siwach\nTest new line");
 			  $encodeMessage = json_encode($xmessage);
 
-			  file_put_contents('log.txt', $xmsgText . PHP_EOL, FILE_APPEND);
+			  //file_put_contents('log.txt', $xmsgText . PHP_EOL, FILE_APPEND);
 
 			  pushMessage($datas, $encodeMessage);
 
-		  }else{
-			  $datasReturn['result'] = 'E';
-			  $datasReturn['message'] = $response;
+		  //}else{
+		//	  $datasReturn['result'] = 'E';
+		//	  $datasReturn['message'] = $response;
 		  }
 	   }
 	   return $datasReturn;
