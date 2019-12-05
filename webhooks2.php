@@ -4,15 +4,26 @@
 	/*Decode Json From LINE Data Body*/
 	$deCode = json_decode($datas,true);
 	file_put_contents('log.txt', file_get_contents('php://input') . PHP_EOL, FILE_APPEND);
-	$replyToken = $deCode['events'][0]['replyToken'];
+	//$replyToken = $deCode['events'][0]['replyToken'];
 	$messages = [];
-	$messages['replyToken'] = $replyToken;
-	$messages['messages'][0] = getFormatTextMessage("ฉันยังไม่เข้าใจคำถามของคุณดีนัก แต่คุณสามารถดูข้อมูล assessment ของคุณได้ที่ https://bpi.co.th/gcme");
-	$encodeJson = json_encode($messages);
+	//$messages['replyToken'] = $replyToken;
+	$messages['messages'][0] = getFormatTextMessage("ขอโทษด้วยที่ฉันยังไม่เข้าใจคำถามของคุณดีนัก แต่คุณสามารถดูข้อมูล assessment ของคุณได้ที่ https://bpi.co.th/gcme");
+	//$encodeJson = json_encode($messages);
 	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
-  	$LINEDatas['token'] = "o9NZ7KFnqWig2wU0rodJtgQH5I93Wq6W/02r/JyUeptCCJ0mOzH1FONFMFpzK41mUErzxIda5u0LUEAA5vixaRC/XB5owB0HxWoyYeoaPz5yF0FFX4PCHWeL3Nn6TWOSs9NKkReGj6njWyR12R/5jQdB04t89/1O/w1cDnyilFU=";
-  	$results = sentMessage($encodeJson,$LINEDatas);
+	  $LINEDatas['token'] = "o9NZ7KFnqWig2wU0rodJtgQH5I93Wq6W/02r/JyUeptCCJ0mOzH1FONFMFpzK41mUErzxIda5u0LUEAA5vixaRC/XB5owB0HxWoyYeoaPz5yF0FFX4PCHWeL3Nn6TWOSs9NKkReGj6njWyR12R/5jQdB04t89/1O/w1cDnyilFU=";
+	  
+
+	foreach ($deCode['events'] as $event) {
+		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
+			$replyToken = $event['replyToken'];
+			$messages['replyToken'] = $replyToken;
+			$encodeJson = json_encode($messages);
+			$results = sentMessage($encodeJson,$LINEDatas);
+		}	
+	}	  
+	
 	/*Return HTTP Request 200*/
+	
 	http_response_code(200);
 	function getFormatTextMessage($text)
 	{
