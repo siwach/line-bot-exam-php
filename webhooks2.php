@@ -102,11 +102,11 @@
 		  if($response == "{}"){
 			  $datasReturn['result'] = 'S';
 			  $datasReturn['message'] = 'Success';
-			  $msgText = json_encode($response);
-			  $message = [];
-			  $message["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10");
- 			  $message["messages"][0] = array("type"=>"text", "text"=>$msgText);//"Test message to siwach\nTest new line");
-			  $encodeMessage = json_encode($message);
+			  $xmsgText = json_encode($response);
+			  $xmessage = [];
+			  $xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10");
+ 			  $xmessage["messages"][0] = array("type"=>"text", "text"=>$xmsgText);//"Test message to siwach\nTest new line");
+			  $encodeMessage = json_encode($xmessage);
 			 
 			  pushMessage($datas, $encodeMessage);
 
@@ -155,7 +155,7 @@
 			}
 		}
 
-		return json_encode($datasReturn);		
+		return $datasReturn;		
 
 	}	
 	
