@@ -8,7 +8,7 @@
 	$weblink1 = "https://bpi.co.th/gcme";
 	$weblink2 = "https://bpi.co.th/gcme/manage/lineregist/";
 	$message1 = "ขอโทษด้วยที่ฉันยังไม่เข้าใจคำถามของคุณดีนัก แต่คุณสามารถดูข้อมูล assessment ของคุณได้ที่ ".$weblink1;
-	$message2 = "เพื่อเชื่อม Line ของคุณเข้ากับระบบ QA GCME Online กรุณา login เข้าระบบผ่านทาง link นี้ ";
+	$message2 = "เพื่อเชื่อม Line ของคุณเข้ากับระบบ QA GCME Online กรุณา login เข้าระบบผ่านทาง link นี้ ".$weblink2;
 
 	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
 	$LINEDatas['url_profile'] = "https://api.line.me/v2/bot/profile/";
@@ -39,7 +39,7 @@
 
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
-				$ymessage["messages"][0] == array("type"=>"text", "text"=>($message2.$weblink2.$uid));
+				$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.$uid));
 				$encodeMessage2 = json_encode($ymessage); 
 				//$profileDecode = json_decode($result["profile"],true);
 				pushMessage($LINEDatas, $encodeMessage2);
