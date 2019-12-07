@@ -42,7 +42,7 @@
 				$photo = $profileDecode["pictureUrl"];
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
-				$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.$uid."/".$displayName."/".$photo));
+				$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.urlencode($uid)."/".urlencode($displayName)."/".urlencode($photo)));
 				$encodeMessage2 = json_encode($ymessage); 
 				pushMessage($LINEDatas, $encodeMessage2);
 
