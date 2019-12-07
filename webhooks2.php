@@ -32,7 +32,7 @@
 			if ($result["result"]=="S"){
 				$xmessage = [];
 				$xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10"); //to 
-				$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);//"Test message to siwach\nTest new line");
+				$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);//"message to siwach\nTest new line");
 				$encodeMessage1 = json_encode($xmessage);  
 				pushMessage($LINEDatas, $encodeMessage1); //send to specify user
 
