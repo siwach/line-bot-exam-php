@@ -43,6 +43,8 @@
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
 				$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.urlencode($uid)."/".urlencode($displayName)."/".urlencode($photo)));
+				//$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.$uid."/".$displayName."/".$photo));
+				file_put_contents('log.txt', ($message2.urlencode($uid)."/".urlencode($displayName)."/".urlencode($photo))  . PHP_EOL, FILE_APPEND);
 				$encodeMessage2 = json_encode($ymessage); 
 				pushMessage($LINEDatas, $encodeMessage2);
 
