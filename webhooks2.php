@@ -37,11 +37,13 @@
 				$encodeMessage1 = json_encode($xmessage);  
 				pushMessage($LINEDatas, $encodeMessage1); //send to specify user
 
+				$profileDecode = json_decode($result["profile"],true);
+				$displayName = $profileDecode["displayName"];
+				$photo = $profileDecode["pictureUrl"];
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
-				$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.$uid));
+				$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.$uid."/".$displayName."/".$photo));
 				$encodeMessage2 = json_encode($ymessage); 
-				//$profileDecode = json_decode($result["profile"],true);
 				pushMessage($LINEDatas, $encodeMessage2);
 
 			}
