@@ -7,7 +7,7 @@
 	//$replyToken = $deCode['events'][0]['replyToken'];
 	$weblink1 = "https://bpi.co.th/gcme";
 	$weblink2 = "https://bpi.co.th/gcme/index.php/manage/lineregist?";
-	$message1 = "ขอโทษด้วยที่ฉันยังไม่เข้าใจคำถามของคุณดีนัก แต่คุณสามารถดูข้อมูล assessment ของคุณได้ที่ ".$weblink1;
+	$message1 = "Please wait for QA's answer or you can see assessment information at ".$weblink1;
 	$message2 = "เพื่อเชื่อม Line ของคุณเข้ากับระบบ QA GCME Online กรุณา login เข้าระบบผ่านทาง link นี้ ".$weblink2;
 
 	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
