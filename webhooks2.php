@@ -202,7 +202,7 @@
 			  "aspectMode": "fit",
 			  "action": {
 				"type": "uri",
-				"uri": "https://bpi.co.th/gcme"
+				"uri": "'.$targetUri.'"
 			  }
 			},
 			"body": {
