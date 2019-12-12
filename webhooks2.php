@@ -35,7 +35,8 @@
 				//$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);
 				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "content"=>createFlexMessage($weblink2, $uid, $displayName, $photo));
 				$encodeMessage1 = json_encode($xmessage);  
-				pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
+				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
+				file_put_contents('log.txt', json_encode($pushResult)  . PHP_EOL, FILE_APPEND);
 
 				$profileDecode = json_decode($result["profile"],true);
 				$displayName = $profileDecode["displayName"];
