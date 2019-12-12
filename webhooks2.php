@@ -42,7 +42,7 @@
 				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
 				file_put_contents('log.txt', json_encode($pushResult)  . PHP_EOL, FILE_APPEND);
 				
-				
+
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
 				$txtmessage = $message2."ruid=$uid&rname=$displayName&rphoto=$photo";
@@ -194,13 +194,12 @@
 			"type": "bubble",
 			"hero": {
 			  "type": "image",
-			  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_3_movie.png",
+			  "url": "https://bpi.co.th/gcme/images/gcme-line.png",
 			  "size": "full",
-			  "aspectRatio": "20:13",
 			  "aspectMode": "cover",
 			  "action": {
 				"type": "uri",
-				"uri": "http://linecorp.com/"
+				"uri": "https://bpi.co.th/gcme"
 			  }
 			},
 			"body": {
