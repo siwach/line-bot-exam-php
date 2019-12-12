@@ -30,6 +30,10 @@
 			$uid = $event['source']["userId"]; 
 			$result = getLineProfile($LINEDatas, $uid);
 			if ($result["result"]=="S"){
+				$profileDecode = json_decode($result["profile"],true);
+				$displayName = $profileDecode["displayName"];
+				$photo = $profileDecode["pictureUrl"];
+
 				$xmessage = [];
 				$xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10"); //to 
 				//$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);
@@ -37,10 +41,8 @@
 				$encodeMessage1 = json_encode($xmessage);  
 				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
 				file_put_contents('log.txt', json_encode($pushResult)  . PHP_EOL, FILE_APPEND);
-
-				$profileDecode = json_decode($result["profile"],true);
-				$displayName = $profileDecode["displayName"];
-				$photo = $profileDecode["pictureUrl"];
+				
+				
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
 				$txtmessage = $message2."ruid=$uid&rname=$displayName&rphoto=$photo";
@@ -219,7 +221,7 @@
 				  "style": "primary",
 				  "action": {
 					"type": "uri",
-					"label": "Link Line with QA GCME Online",
+					"label": "Link with QA GCME Online",
 					"uri": "'.$targetUri.'"
 				  }
 				},
