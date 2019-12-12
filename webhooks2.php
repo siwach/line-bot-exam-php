@@ -240,7 +240,7 @@
 					  "contents": [
 						{
 						  "type": "text",
-						  "text": "Please Link Line with QA GCME Onlie เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ",
+						  "text": "Please click to link with QA GCME Online เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ ผ่านทาง Line",
 						  "color": "#ff0000",
 						  "size": "sm",
 						  "flex": 1,
