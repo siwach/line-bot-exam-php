@@ -33,11 +33,12 @@
 				$profileDecode = json_decode($result["profile"],true);
 				$displayName = $profileDecode["displayName"];
 				$photo = $profileDecode["pictureUrl"];
+				$contents = createFlexMessage($weblink2, $uid, $displayName, $photo);
 
 				$xmessage = [];
 				$xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10"); //to 
 				//$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);
-				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "contents"=>createFlexMessage($weblink2, $uid, $displayName, $photo));
+				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "contents"=>$contents);
 				$encodeMessage1 = json_encode($xmessage);  
 				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
 				file_put_contents('log.txt', json_encode($pushResult)  . PHP_EOL, FILE_APPEND);
@@ -46,7 +47,8 @@
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
 				$txtmessage = $message2."ruid=$uid&rname=$displayName&rphoto=$photo";
-				$ymessage["messages"][0] = array("type"=>"text", "text"=>$txtmessage);
+				//$ymessage["messages"][0] = array("type"=>"text", "text"=>$txtmessage);
+				$ymessage["messages"][0] = array("type"=>"flex", "altText"=>$txtmessage, "contents"=>$contents);
 				file_put_contents('log.txt', $txtmessage  . PHP_EOL, FILE_APPEND);
 				$encodeMessage2 = json_encode($ymessage); 
 				pushMessage($LINEDatas, $encodeMessage2);
