@@ -196,6 +196,7 @@
 			  "type": "image",
 			  "url": "https://bpi.co.th/gcme/images/gcme-line.png",
 			  "size": "full",
+			  "aspectRatio":"187:88",
 			  "aspectMode": "fit",
 			  "action": {
 				"type": "uri",
