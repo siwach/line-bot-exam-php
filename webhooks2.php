@@ -187,7 +187,7 @@
 	//================================
 	function createFlexMessage($uri, $uid, $uname, $uphoto){
 		$targetUri = $uri."ruid=$uid&rname=$uname&rphoto=$uphoto";
-		$message = '
+		$message = json_decode('
 		{
 			"type": "bubble",
 			"hero": {
@@ -249,7 +249,7 @@
 			  ]
 			}
 		  }	
-		';
+		');
 
 		return $message;
 
