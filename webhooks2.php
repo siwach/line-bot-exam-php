@@ -9,7 +9,7 @@
 	$weblink2 = "https://bpi.co.th/gcme/index.php/manage/lineregist?";
 	$message1 = "Please wait for QA's answer or you can see assessment information at ".$weblink1;
 	$message2 = "เพื่อเชื่อม Line ของคุณเข้ากับระบบ QA GCME Online กรุณา login เข้าระบบผ่านทาง link นี้ ".$weblink2;
-
+	
 	$LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
 	$LINEDatas['url_profile'] = "https://api.line.me/v2/bot/profile/";
 	$LINEDatas['url_push'] = "https://api.line.me/v2/bot/message/multicast";
@@ -21,7 +21,6 @@
 			$replyToken = $event['replyToken'];
 			$messages = [];
 			$messages['replyToken'] = $replyToken;			
-			//$messages['replyToken'] = $replyToken;
 			$messages['messages'][0] = getFormatTextMessage($message1);
 
 			$encodeJson = json_encode($messages);
@@ -33,16 +32,16 @@
 			if ($result["result"]=="S"){
 				$xmessage = [];
 				$xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10"); //to 
-				$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);//"message to siwach\nTest new line");
+				//$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);
+				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "content"=>createFlexMessage($weblink2, $uid, $displayName, $photo));
 				$encodeMessage1 = json_encode($xmessage);  
-				pushMessage($LINEDatas, $encodeMessage1); //send to specify user
+				pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
 
 				$profileDecode = json_decode($result["profile"],true);
 				$displayName = $profileDecode["displayName"];
 				$photo = $profileDecode["pictureUrl"];
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
-				//$ymessage["messages"][0] = array("type"=>"text", "text"=>($message2.urlencode($uid)."/".urlencode($displayName)."/".urlencode($photo)));
 				$txtmessage = $message2."ruid=$uid&rname=$displayName&rphoto=$photo";
 				$ymessage["messages"][0] = array("type"=>"text", "text"=>$txtmessage);
 				file_put_contents('log.txt', $txtmessage  . PHP_EOL, FILE_APPEND);
@@ -184,5 +183,75 @@
 		return $datasReturn;		
 
 	}	
+	//================================
+	function createFlexMessage($uri, $uid, $uname, $uphoto){
+		$targetUri = $uri."ruid=$uid&rname=$uname&rphoto=$uphoto";
+		$message = '
+		{
+			"type": "bubble",
+			"hero": {
+			  "type": "image",
+			  "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_3_movie.png",
+			  "size": "full",
+			  "aspectRatio": "20:13",
+			  "aspectMode": "cover",
+			  "action": {
+				"type": "uri",
+				"uri": "http://linecorp.com/"
+			  }
+			},
+			"body": {
+			  "type": "box",
+			  "layout": "vertical",
+			  "spacing": "md",
+			  "contents": [
+				{
+				  "type": "text",
+				  "text": "QA GCME Online",
+				  "wrap": true,
+				  "weight": "bold",
+				  "gravity": "center",
+				  "size": "xl"
+				},
+				{
+				  "type": "button",
+				  "style": "primary",
+				  "action": {
+					"type": "uri",
+					"label": "Link Line with QA GCME Online",
+					"uri": "'.$targetUri.'"
+				  }
+				},
+				{
+				  "type": "box",
+				  "layout": "vertical",
+				  "margin": "lg",
+				  "spacing": "sm",
+				  "contents": [
+					{
+					  "type": "box",
+					  "layout": "baseline",
+					  "spacing": "sm",
+					  "contents": [
+						{
+						  "type": "text",
+						  "text": "Please Link Line with QA GCME Onlie เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ",
+						  "color": "#ff0000",
+						  "size": "sm",
+						  "flex": 1,
+						  "wrap": true
+						}
+					  ]
+					}
+				  ]
+				}
+			  ]
+			}
+		  }	
+		';
+
+		return $message;
+
+	}
 	
 ?>
