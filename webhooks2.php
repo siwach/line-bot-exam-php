@@ -196,7 +196,7 @@
 			  "type": "image",
 			  "url": "https://bpi.co.th/gcme/images/gcme-line.png",
 			  "size": "full",
-			  "aspectMode": "cover",
+			  "aspectMode": "fit",
 			  "action": {
 				"type": "uri",
 				"uri": "https://bpi.co.th/gcme"
