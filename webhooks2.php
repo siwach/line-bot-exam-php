@@ -33,7 +33,7 @@
 				$xmessage = [];
 				$xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10"); //to 
 				//$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);
-				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "content"=>createFlexMessage($weblink2, $uid, $displayName, $photo));
+				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "contents"=>createFlexMessage($weblink2, $uid, $displayName, $photo));
 				$encodeMessage1 = json_encode($xmessage);  
 				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
 				file_put_contents('log.txt', json_encode($pushResult)  . PHP_EOL, FILE_APPEND);
