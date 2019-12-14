@@ -5,8 +5,8 @@
 	$deCode = json_decode($datas,true);
 	file_put_contents('log.txt', file_get_contents('php://input') . PHP_EOL, FILE_APPEND);
 	//$replyToken = $deCode['events'][0]['replyToken'];
-	$weblink1 = "https://bpi.co.th/gcme";
-	$weblink2 = "https://bpi.co.th/gcme/index.php/manage/lineregist?";
+	$weblink1 = "https://www.qagcme.com/qaonline";
+	$weblink2 = "https://www.qagcme.com/qaonline/index.php/manage/lineregist?";
 	$message1 = "Please wait for QA's answer or you can see assessment information at ".$weblink1;
 	$message2 = "เพื่อเชื่อม Line ของคุณเข้ากับระบบ QA GCME Online กรุณา login เข้าระบบผ่านทาง link นี้ ".$weblink2;
 	
@@ -196,7 +196,7 @@
 			"type": "bubble",
 			"hero": {
 			  "type": "image",
-			  "url": "https://bpi.co.th/gcme/images/gcme-line.png",
+			  "url": "https://www.qagcme.com/qaonline/images/gcme-line.png",
 			  "size": "full",
 			  "aspectRatio":"187:88",
 			  "aspectMode": "fit",
