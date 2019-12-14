@@ -196,7 +196,7 @@
 			"type": "bubble",
 			"hero": {
 			  "type": "image",
-			  "url": "https://www.qagcme.com/qaonline/images/gcme-line.png",
+			  "url": "https://www.qagcme.com/qaonline/images/gcme-line1.png",
 			  "size": "full",
 			  "aspectRatio":"441:108",
 			  "aspectMode": "fit",
