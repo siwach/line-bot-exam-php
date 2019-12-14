@@ -198,7 +198,7 @@
 			  "type": "image",
 			  "url": "https://www.qagcme.com/qaonline/images/gcme-line.png",
 			  "size": "full",
-			  "aspectRatio":"187:88",
+			  "aspectRatio":"441:108",
 			  "aspectMode": "fit",
 			  "action": {
 				"type": "uri",
