@@ -238,7 +238,7 @@
 					  "contents": [
 						{
 						  "type": "text",
-						  "text": "Please click to link with QA GCME Online เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ ผ่านทาง Line [".$uname."]",
+						  "text": "Please click to link with QA GCME Online เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ ผ่านทาง Line'".$uname.'",
 						  "color": "#ff0000",
 						  "size": "sm",
 						  "flex": 1,
