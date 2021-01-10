@@ -15,6 +15,7 @@
 	$LINEDatas['url_push'] = "https://api.line.me/v2/bot/message/multicast";
 	$LINEDatas['token'] = "o9NZ7KFnqWig2wU0rodJtgQH5I93Wq6W/02r/JyUeptCCJ0mOzH1FONFMFpzK41mUErzxIda5u0LUEAA5vixaRC/XB5owB0HxWoyYeoaPz5yF0FFX4PCHWeL3Nn6TWOSs9NKkReGj6njWyR12R/5jQdB04t89/1O/w1cDnyilFU=";
 	
+	$notifyToId = "Uf89ad877a045937f4fcc96c0c1762a10";
 
 	foreach ($deCode['events'] as $event) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
@@ -36,20 +37,21 @@
 				$contents = createFlexMessage($weblink2, $uid, $displayName, $photo);
 
 				$xmessage = [];
-				$xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10"); //to 
+				$xmessage["to"] = array_unique(array($notifyToId, $uid)); //to 
 				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "contents"=>$contents);
 				$encodeMessage1 = json_encode($xmessage);  
 				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
 				file_put_contents('log.txt', json_encode($pushResult)  . PHP_EOL, FILE_APPEND);
 				
-
-				$ymessage = [];
-				$ymessage["to"] = array($uid);
-				$txtmessage = $message2."ruid=$uid&rname=$displayName&rphoto=$photo";
-				$ymessage["messages"][0] = array("type"=>"flex", "altText"=>$txtmessage, "contents"=>$contents);				
-				$encodeMessage2 = json_encode($ymessage); 
-				pushMessage($LINEDatas, $encodeMessage2);
-				file_put_contents('log.txt', $txtmessage  . PHP_EOL, FILE_APPEND);
+/* 				if ($uid != "Uf89ad877a045937f4fcc96c0c1762a10"){
+					$ymessage = [];
+					$ymessage["to"] = array($uid);
+					$txtmessage = $message2."ruid=$uid&rname=$displayName&rphoto=$photo";
+					$ymessage["messages"][0] = array("type"=>"flex", "altText"=>$txtmessage, "contents"=>$contents);				
+					$encodeMessage2 = json_encode($ymessage); 
+					pushMessage($LINEDatas, $encodeMessage2);
+					file_put_contents('log.txt', $txtmessage  . PHP_EOL, FILE_APPEND);
+				} */
 
 			}
 		}
@@ -238,7 +240,7 @@
 					  "contents": [
 						{
 						  "type": "text",
-						  "text": "Please click to link with QA GCME Online เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ ผ่านทาง Line '.$uname.'",
+						  "text": "Please click to link with QA GCME Online เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ ผ่านทาง Line [for '.$uname.']",
 						  "color": "#ff0000",
 						  "size": "sm",
 						  "flex": 1,
