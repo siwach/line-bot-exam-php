@@ -37,7 +37,6 @@
 
 				$xmessage = [];
 				$xmessage["to"] = array("Uf89ad877a045937f4fcc96c0c1762a10"); //to 
-				//$xmessage["messages"][0] = array("type"=>"text", "text"=>$result["profile"]);
 				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "contents"=>$contents);
 				$encodeMessage1 = json_encode($xmessage);  
 				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
@@ -47,11 +46,10 @@
 				$ymessage = [];
 				$ymessage["to"] = array($uid);
 				$txtmessage = $message2."ruid=$uid&rname=$displayName&rphoto=$photo";
-				//$ymessage["messages"][0] = array("type"=>"text", "text"=>$txtmessage);
-				$ymessage["messages"][0] = array("type"=>"flex", "altText"=>$txtmessage, "contents"=>$contents);
-				file_put_contents('log.txt', $txtmessage  . PHP_EOL, FILE_APPEND);
+				$ymessage["messages"][0] = array("type"=>"flex", "altText"=>$txtmessage, "contents"=>$contents);				
 				$encodeMessage2 = json_encode($ymessage); 
 				pushMessage($LINEDatas, $encodeMessage2);
+				file_put_contents('log.txt', $txtmessage  . PHP_EOL, FILE_APPEND);
 
 			}
 		}
@@ -240,7 +238,7 @@
 					  "contents": [
 						{
 						  "type": "text",
-						  "text": "Please click to link with QA GCME Online เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ ผ่านทาง Line",
+						  "text": "Please click to link with QA GCME Online เพื่อรับข่าวสารและการแจ้งเตือนต่างๆ ผ่านทาง Line [".$uname."]",
 						  "color": "#ff0000",
 						  "size": "sm",
 						  "flex": 1,
