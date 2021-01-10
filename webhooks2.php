@@ -38,7 +38,7 @@
 
 				$xmessage = [];
 				$xmessage["to"] = array_unique(array($notifyToId, $uid)); //to 
-				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>$result["profile"], "contents"=>$contents);
+				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>"เชื่อมโยงบัญชีกับ Line เพื่อรับการแจ้งเตือน", "contents"=>$contents);
 				$encodeMessage1 = json_encode($xmessage);  
 				$pushResult = pushMessage($LINEDatas, $encodeMessage1); //send to specify user 
 				file_put_contents('log.txt', json_encode($pushResult)  . PHP_EOL, FILE_APPEND);
