@@ -17,6 +17,7 @@
 	
 	$notifyToId = "Uf89ad877a045937f4fcc96c0c1762a10";
 
+
 	foreach ($deCode['events'] as $event) {
 		if ($event['type'] == 'message' && $event['message']['type'] == 'text') {
 			$replyToken = $event['replyToken'];
@@ -36,6 +37,8 @@
 				$photo = $profileDecode["pictureUrl"];
 				$contents = createFlexMessage($weblink2, $uid, $displayName, $photo);
 
+				file_put_contents('log.txt', "user id=".$uid . PHP_EOL, FILE_APPEND);	
+				
 				$xmessage = [];
 				$xmessage["to"] = array_unique(array($notifyToId, $uid)); //to 
 				$xmessage["messages"][0] = array("type"=>"flex", "altText"=>"เชื่อมโยงบัญชีกับ Line เพื่อรับการแจ้งเตือน", "contents"=>$contents);
@@ -190,7 +193,7 @@
 	}	
 	//================================
 	function createFlexMessage($uri, $uid, $uname, $uphoto){
-		$targetUri = $uri."ruid=$uid&rname=$uname&rphoto=$uphoto";
+		$targetUri = $uri."ruid=$uid&rname=".urlencode($uname)."&rphoto=$uphoto";
 		$message = json_decode('
 		{
 			"type": "bubble",
